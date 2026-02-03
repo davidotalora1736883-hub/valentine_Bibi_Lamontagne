@@ -89,6 +89,7 @@ opacity:0;
 margin-top:14px;
 font-size:20px;
 display:none;
+min-height:48px;
 }
 
 .show{display:block}
@@ -116,13 +117,16 @@ display:none;
 <button id="no">Non 🙃</button>
 </div>
 
-<div class="result" id="result">
-Yesss!! 🥰💞 Je t’aime fort. Prépare-toi pour une surprise 😘
-</div>
+<div class="result" id="result"></div>
 
 </div>
 
 <script>
+
+// 🔧 Change le prénom ici si tu veux
+const HER_NAME = "Bibi";
+
+const finalMessage = `Yesss ${HER_NAME}!! 🥰💞 Je t’aime fort. Prépare-toi pour une surprise 😘`;
 
 const noBtn=document.getElementById("no");
 const yesBtn=document.getElementById("yes");
@@ -146,6 +150,24 @@ playBtn.textContent="🎵 Musique activée";
 playBtn.disabled=true;
 });
 
+// vibration téléphone (si supporté)
+function vibrate(){
+if(navigator.vibrate){
+navigator.vibrate([150,80,150]);
+}
+}
+
+// effet machine à écrire
+function typeWriter(text,el,speed=40){
+el.textContent="";
+let i=0;
+const timer=setInterval(()=>{
+el.textContent+=text.charAt(i);
+i++;
+if(i>=text.length) clearInterval(timer);
+},speed);
+}
+
 function moveNoButton(){
 const pad=12;
 const cardRect=card.getBoundingClientRect();
@@ -166,8 +188,11 @@ noBtn.addEventListener("click",(e)=>{e.preventDefault();moveNoButton();});
 yesBtn.addEventListener("click",()=>{
 
 startMusic();
+vibrate();
 
 result.classList.add("show");
+typeWriter(finalMessage,result,45);
+
 yesBtn.disabled=true;
 noBtn.style.display="none";
 
