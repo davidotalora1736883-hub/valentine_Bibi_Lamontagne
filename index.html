@@ -1,191 +1,194 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Valentine 💘</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <style>
-    :root { --bg1:#ff9a9e; --bg2:#fad0c4; --card:#ffffffcc; }
+<title>Valentine 💘</title>
 
-    *{
-      box-sizing:border-box;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    }
+<style>
+:root { --bg1:#ff9a9e; --bg2:#fad0c4; --card:#ffffffcc; }
 
-    body{
-      margin:0;
-      min-height:100vh;
-      display:grid;
-      place-items:center;
-      background: linear-gradient(135deg,var(--bg1),var(--bg2));
-      overflow:hidden;
-    }
+*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial}
 
-    .card{
-      width:min(520px,92vw);
-      padding:28px 20px;
-      border-radius:22px;
-      background:var(--card);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 10px 35px rgba(0,0,0,.18);
-      text-align:center;
-      position:relative;
-    }
+body{
+margin:0;
+min-height:100vh;
+display:grid;
+place-items:center;
+background:linear-gradient(135deg,var(--bg1),var(--bg2));
+overflow:hidden;
+}
 
-    h1{margin:0 0 8px;font-size:28px}
-    p{margin:0 0 18px;opacity:.85}
+.card{
+width:min(520px,92vw);
+padding:28px 20px;
+border-radius:22px;
+background:var(--card);
+backdrop-filter:blur(8px);
+box-shadow:0 10px 35px rgba(0,0,0,.18);
+text-align:center;
+position:relative;
+}
 
-    .btns{
-      display:flex;
-      gap:14px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
+h1{margin:0 0 8px;font-size:28px}
+p{margin:0 0 18px;opacity:.85}
 
-    button{
-      border:0;
-      padding:14px 18px;
-      border-radius:14px;
-      font-size:18px;
-      cursor:pointer;
-      box-shadow: 0 8px 18px rgba(0,0,0,.12);
-    }
+.btns{
+display:flex;
+gap:12px;
+justify-content:center;
+flex-wrap:wrap;
+}
 
-    #yes{background:#ff3b6e;color:white}
+button{
+border:0;
+padding:14px 18px;
+border-radius:14px;
+font-size:18px;
+cursor:pointer;
+box-shadow:0 8px 18px rgba(0,0,0,.12);
+}
 
-    #no{
-      background:#fff;
-      color:#222;
-      position:absolute;
-      left:50%;
-      top:72%;
-      transform: translate(-50%,-50%);
-    }
+#play{background:#6c63ff;color:white}
+#yes{background:#ff3b6e;color:white}
 
-    .hearts{
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      overflow:hidden;
-      border-radius:22px;
-    }
+#no{
+background:white;
+color:#222;
+position:absolute;
+left:50%;
+top:75%;
+transform:translate(-50%,-50%);
+}
 
-    .heart{
-      position:absolute;
-      bottom:-20px;
-      font-size:18px;
-      opacity:.8;
-      animation: floatUp linear forwards;
-    }
+.hearts{
+position:absolute;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+border-radius:22px;
+}
 
-    @keyframes floatUp{
-      to{
-        transform: translateY(-120vh) rotate(360deg);
-        opacity:0;
-      }
-    }
+.heart{
+position:absolute;
+bottom:-20px;
+font-size:18px;
+opacity:.8;
+animation:floatUp linear forwards;
+}
 
-    .result{
-      margin-top:14px;
-      font-size:20px;
-      display:none;
-    }
+@keyframes floatUp{
+to{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
 
-    .show{display:block}
-  </style>
+.result{
+margin-top:14px;
+font-size:20px;
+display:none;
+}
+
+.show{display:block}
+</style>
 </head>
 
 <body>
 
-  <div class="card" id="card">
+<div class="card" id="card">
 
-    <div class="hearts" id="hearts"></div>
+<div class="hearts" id="hearts"></div>
 
-    <!-- GIF -->
-    <img src="love.gif" style="width:min(280px,70vw); border-radius:18px; margin:10px auto 14px; display:block; box-shadow:0 10px 25px rgba(0,0,0,.15);">
+<img src="love.gif" style="width:min(280px,70vw);border-radius:18px;margin:10px auto 14px;display:block;box-shadow:0 10px 25px rgba(0,0,0,.15);">
 
-    <!-- Audio -->
-    <audio id="bgm" preload="auto">
-      <source src="music.mp3" type="audio/mpeg">
-    </audio>
+<audio id="bgm" preload="auto">
+<source src="music.mp3" type="audio/mpeg">
+</audio>
 
-    <h1>Veux-tu être ma Valentine? 💘</h1>
-    <p>(Attention… le bouton NON est très timide 😅)</p>
+<h1>Veux-tu être ma Valentine? 💘</h1>
+<p>(Le bouton NON est très timide 😅)</p>
 
-    <div class="btns">
-      <button id="yes">Oui 😍</button>
-      <button id="no">Non 🙃</button>
-    </div>
+<div class="btns">
+<button id="play">🔊 Activer la musique</button>
+<button id="yes">Oui 😍</button>
+<button id="no">Non 🙃</button>
+</div>
 
-    <div class="result" id="result">
-      Yesss!! 🥰💞 Je t’aime fort. Prépare-toi pour une surprise 😘
-    </div>
+<div class="result" id="result">
+Yesss!! 🥰💞 Je t’aime fort. Prépare-toi pour une surprise 😘
+</div>
 
-  </div>
+</div>
 
 <script>
-const noBtn = document.getElementById("no");
-const yesBtn = document.getElementById("yes");
-const result = document.getElementById("result");
-const card = document.getElementById("card");
-const hearts = document.getElementById("hearts");
-const bgm = document.getElementById("bgm");
 
-function rand(min, max){
-  return Math.random() * (max - min) + min;
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const playBtn=document.getElementById("play");
+const result=document.getElementById("result");
+const card=document.getElementById("card");
+const hearts=document.getElementById("hearts");
+const bgm=document.getElementById("bgm");
+
+function rand(min,max){return Math.random()*(max-min)+min;}
+
+function startMusic(){
+bgm.volume=0.8;
+bgm.loop=true;
+bgm.play().catch(()=>{});
 }
+
+playBtn.addEventListener("click",()=>{
+startMusic();
+playBtn.textContent="🎵 Musique activée";
+playBtn.disabled=true;
+});
 
 function moveNoButton(){
-  const pad = 12;
+const pad=12;
+const cardRect=card.getBoundingClientRect();
+const btnRect=noBtn.getBoundingClientRect();
 
-  const cardRect = card.getBoundingClientRect();
-  const btnRect = noBtn.getBoundingClientRect();
+const x=rand(pad,cardRect.width-btnRect.width-pad);
+const y=rand(140,cardRect.height-btnRect.height-pad);
 
-  const minX = pad;
-  const maxX = cardRect.width - btnRect.width - pad;
-  const minY = 140;
-  const maxY = cardRect.height - btnRect.height - pad;
-
-  const x = rand(minX, maxX);
-  const y = rand(minY, maxY);
-
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
-  noBtn.style.transform = "none";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+noBtn.style.transform="none";
 }
 
-noBtn.addEventListener("mouseenter", moveNoButton);
-noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNoButton(); }, {passive:false});
-noBtn.addEventListener("click", (e)=>{ e.preventDefault(); moveNoButton(); });
+noBtn.addEventListener("mouseenter",moveNoButton);
+noBtn.addEventListener("touchstart",(e)=>{e.preventDefault();moveNoButton();},{passive:false});
+noBtn.addEventListener("click",(e)=>{e.preventDefault();moveNoButton();});
 
-yesBtn.addEventListener("click", () => {
+yesBtn.addEventListener("click",()=>{
 
-  bgm.volume = 0.8;
-  bgm.play().catch(()=>{});
+startMusic();
 
-  result.classList.add("show");
-  yesBtn.disabled = true;
-  noBtn.disabled = true;
-  noBtn.style.display = "none";
+result.classList.add("show");
+yesBtn.disabled=true;
+noBtn.style.display="none";
 
-  confettiHearts();
+confettiHearts();
 });
 
 function confettiHearts(){
-  for(let i=0;i<30;i++){
-    const h = document.createElement("div");
-    h.className = "heart";
-    h.textContent = ["💖","💘","💞","💕","❤️"][Math.floor(rand(0,5))];
-    h.style.left = rand(0,100) + "%";
-    h.style.animationDuration = rand(2.5,4.5) + "s";
-    h.style.fontSize = rand(16,28) + "px";
-    hearts.appendChild(h);
-    setTimeout(()=>h.remove(),5000);
-  }
+for(let i=0;i<30;i++){
+const h=document.createElement("div");
+h.className="heart";
+h.textContent=["💖","💘","💞","💕","❤️"][Math.floor(rand(0,5))];
+h.style.left=rand(0,100)+"%";
+h.style.animationDuration=rand(2.5,4.5)+"s";
+h.style.fontSize=rand(16,28)+"px";
+hearts.appendChild(h);
+setTimeout(()=>h.remove(),5000);
+}
 }
 
 moveNoButton();
+
 </script>
 
 </body>
